@@ -1,0 +1,457 @@
+/* Color Palette & Variables */
+:root {
+    --primary: #007bff; /* Electric Blue */
+    --dark: #121212;    /* Deep Charcoal */
+    --light: #f8f9fa;
+    --gray: #333;
+    --text-muted: #666;
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #fafafa;
+    /* 1. Subtle Tech Grid Background */
+    background-image: radial-gradient(#d1d5db 1px, transparent 1px);
+    background-size: 24px 24px;
+    color: var(--dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 2rem;
+}
+
+/* Navigation */
+.navbar {
+    background: #fff;
+    padding: 1.2rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--dark);
+    margin-left: 2.5rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.nav-links li a:hover {
+    color: var(--primary);
+}
+
+/* Hero Section */
+.hero {
+    height: 90vh;
+    background: linear-gradient(rgba(18,18,18,0.8), rgba(18,18,18,0.9)), 
+                url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 2. Floating Asymmetrical Elements in Hero */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    width: 60px;
+    height: 60px;
+    border: 4px solid var(--primary);
+    opacity: 0.4;
+    animation: float 6s ease-in-out infinite;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 25%;
+    right: 20%;
+    width: 30px;
+    height: 30px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: float 8s ease-in-out infinite reverse;
+}
+
+/* 3. Asymmetrical Accent on Profile Picture */
+.profile-placeholder {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.profile-placeholder::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    right: -10px;
+    width: 45px;
+    height: 45px;
+    background-color: var(--primary);
+    border-radius: 8px;
+    z-index: 1; /* Puts the accent square over the edge of the image */
+}
+
+.profile-img {
+    border-radius: 50%;
+    border: 4px solid var(--primary);
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 2; /* Ensures image stays mostly on top */
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 5;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    color: #ccc;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 5;
+}
+
+/* Animation Keyframes for Floating Elements */
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(15deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    background: var(--primary);
+    color: #fff;
+    padding: 0.9rem 2.5rem;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 5;
+}
+
+.btn:hover {
+    background: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,123,255,0.4);
+}
+
+/* General Sections */
+.section {
+    padding: 6rem 0;
+}
+
+.section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+}
+
+/* Updated Asymmetrical Heading Line */
+.section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    margin: 10px auto 0;
+    transform: translateX(15px); /* Offsets the line slightly for an asymmetrical look */
+}
+
+/* Project Cards */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem; /* Increased gap to give cards room to pop */
+}
+
+.card {
+    background: #fff;
+    border-radius: 0; /* Removing border radius for a sharper, brutalist modern feel */
+    overflow: hidden;
+    border: 1px solid #eaeaea;
+    transition: 0.3s ease-in-out;
+    position: relative;
+}
+
+/* 4. Asymmetrical Solid Shadow on Hover */
+.card:hover {
+    transform: translate(-8px, -8px);
+    box-shadow: 12px 12px 0px rgba(0, 123, 255, 0.2); 
+    border-color: var(--primary);
+}
+
+.card-img {
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-body h3 {
+    margin-bottom: 0.8rem;
+    color: var(--dark);
+}
+
+.links {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.links a {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.links a i {
+    margin-right: 5px;
+}
+
+.links a:hover {
+    text-decoration: underline;
+    color: var(--dark);
+}
+
+/* --- UI Challenge Contact Layout --- */
+.contact-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    background: #fff;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    border-radius: 8px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Form Container (Left) */
+.contact-form-container {
+    flex: 1 1 55%;
+    padding: 4rem;
+    background: #fff;
+}
+
+h2.align-left {
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+h2.align-left::after {
+    display: none; 
+}
+
+.contact-subtext {
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+    font-size: 0.95rem;
+}
+
+/* Minimalist Underline Inputs */
+.contact-form-new {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact-form-new input, 
+.contact-form-new textarea {
+    width: 100%;
+    padding: 0.5rem 0;
+    border: none;
+    border-bottom: 2px solid #eee;
+    background: transparent;
+    font-size: 1rem;
+    transition: 0.3s ease;
+    border-radius: 0; 
+}
+
+.contact-form-new input:focus, 
+.contact-form-new textarea:focus {
+    outline: none;
+    border-bottom-color: var(--primary);
+}
+
+.contact-btn {
+    align-self: flex-start;
+    background: var(--dark);
+    padding: 1rem 4rem;
+    border-radius: 0; /* Sharpened to match the cards */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+}
+
+.contact-btn:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 5px 5px 0px rgba(0, 123, 255, 0.4);
+}
+
+/* Info Box Container (Right) */
+.contact-info-container {
+    flex: 1 1 45%;
+    background: var(--dark);
+    color: #fff;
+    padding: 4rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+/* The Blue Accent Square overlapping the boxes */
+.contact-info-container::before {
+    content: '';
+    position: absolute;
+    top: 3rem;
+    left: -1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--primary);
+    z-index: 10;
+}
+
+.info-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+}
+
+.info-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.info-list li {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-size: 0.95rem;
+    color: #ddd;
+}
+
+.info-list i {
+    font-size: 1.2rem;
+    color: var(--primary); 
+    width: 20px;
+    text-align: center;
+}
+
+/* Footer */
+footer {
+    background: var(--dark);
+    color: #fff;
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.socials {
+    margin-bottom: 1.5rem;
+}
+
+.socials a {
+    color: #fff;
+    font-size: 1.8rem;
+    margin: 0 15px;
+    transition: 0.3s;
+}
+
+.socials a:hover {
+    color: var(--primary);
+    transform: translateY(-3px);
+    display: inline-block;
+}
+
+#topBtn {
+    background: transparent;
+    color: #fff;
+    border: 1px solid var(--primary);
+    padding: 0.5rem 1rem;
+    margin-top: 2rem;
+    cursor: pointer;
+    border-radius: 0;
+    transition: 0.3s;
+}
+
+#topBtn:hover {
+    background: var(--primary);
+}
+
+/* Responsive Tablet/Mobile */
+@media (max-width: 800px) {
+    .hero h1 { font-size: 2.5rem; }
+    .nav-links { display: none; }
+    
+    .contact-form-container {
+        padding: 2.5rem 2rem;
+    }
+    .contact-info-container {
+        padding: 3rem 2rem;
+    }
+    .contact-info-container::before {
+        top: -1rem;
+        left: 2rem;
+    }
+}

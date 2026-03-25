@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stephen Christie | Portfolio</title>
+    <link rel="stylesheet" href="Styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">SC<span>.</span></div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <div class="profile-placeholder">
+                <img src="https://via.placeholder.com/150" alt="Stephen Christie" class="profile-img">
+            </div>
+            <h1>Stephen Christie</h1>
+            <p>Mobile App & Web Developer</p>
+            <a href="#projects" class="btn">View My Work</a>
+        </div>
+    </section>
+
+    <section id="about" class="container section">
+        <h2>About Me</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>I am a developer focused on building functional and aesthetic digital experiences. With a background in <strong>Mobile Application & Web Development</strong>, I enjoy solving complex problems through clean code.</p>
+                <p><strong>Education:</strong> Higher Certificate in Mobile App & Web Development from Varsity College (Completed 2025).</p>
+                <p><strong>Technical Skills:</strong> Java, C#, ASP.NET, SQL, HTML/CSS, and JavaScript.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="container section">
+        <h2>Featured Projects</h2>
+        <div class="project-grid">
+            
+            <div class="card">
+                <div class="card-img" style="background-image: url('assets/toneblast.png'); background-size: contain; background-repeat: no-repeat; background-color: #f8f9fa;"></div>
+                <div class="card-body">
+                    <h3>Tone Blast (Sandblasting JHB)</h3>
+                    <p>A professional web presence for a sandblasting service, focused on performance and clear service presentation.</p>
+                    <div class="links">
+                        <a href="https://github.com/StevenChristie/ToneBlast.git" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://sandblastingjhb.co.za/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Site</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="card-body">
+                    <h3>Galactic Defender</h3>
+                    <p>A modern take on the classic Space Invaders arcade style using Java and C#.</p>
+                    <div class="links">
+                        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1509114397022-ed747cca3f65?auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="card-body">
+                    <h3>Zombie Survival Game</h3>
+                    <p>A survival-style game featuring looting mechanics and inventory management.</p>
+                    <div class="links">
+                        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+  <section id="contact" class="container section">
+        <div class="contact-wrapper">
+            
+            <div class="contact-form-container">
+                <h2 class="align-left">Get In Touch</h2>
+                <p class="contact-subtext">Feel free to contact me any time. I will get back to you as soon as I can!</p>
+                
+                <form action="https://formspree.io/f/xqegzqrg" method="POST" class="contact-form-new">
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="_replyto" placeholder="Email" required>
+                    <textarea name="message" placeholder="Message" rows="3" required></textarea>
+                    <button type="submit" class="btn contact-btn">SEND</button>
+                </form>
+            </div>
+            <div class="contact-info-container">
+                <div class="info-content">
+                    <h3>Info</h3>
+                    <ul class="info-list">
+                        <li><i class="far fa-envelope"></i> hello@stephenchristie.co.za</li>
+                        <li><i class="fas fa-phone-alt"></i> +27 11 000 0000</li>
+                        <li><i class="far fa-building"></i> Sandton, Gauteng, South Africa</li>
+                        <li><i class="far fa-clock"></i> 09:00 - 18:00</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="socials">
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+        <p>&copy; 2026 Stephen Christie. All rights reserved.</p>
+        <button id="topBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Back to Top</button>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
