@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <!-- Deep navy stadium backdrop -->
+    <radialGradient id="bg" cx="50%" cy="40%" r="80%">
+      <stop offset="0%"   stop-color="#142B49"/>
+      <stop offset="55%"  stop-color="#0A1628"/>
+      <stop offset="100%" stop-color="#02060E"/>
+    </radialGradient>
+
+    <!-- Light beams from the back -->
+    <linearGradient id="beam" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%"   stop-color="#F58220" stop-opacity="0.0"/>
+      <stop offset="40%"  stop-color="#F58220" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#F58220" stop-opacity="0.0"/>
+    </linearGradient>
+    <linearGradient id="beamBlue" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%"   stop-color="#00BFFF" stop-opacity="0.0"/>
+      <stop offset="50%"  stop-color="#00BFFF" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#00BFFF" stop-opacity="0.0"/>
+    </linearGradient>
+
+    <!-- Floor reflection -->
+    <linearGradient id="floor" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%"   stop-color="#0A1628" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#02060E"/>
+    </linearGradient>
+
+    <!-- Center sunburst glow behind the shield -->
+    <radialGradient id="centerBurst" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#FFD24A" stop-opacity="0.55"/>
+      <stop offset="30%"  stop-color="#F58220" stop-opacity="0.35"/>
+      <stop offset="70%"  stop-color="#F58220" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#F58220" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Platinum tier metal -->
+    <linearGradient id="platMetal" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#E8FBFF"/>
+      <stop offset="35%"  stop-color="#9CE7EF"/>
+      <stop offset="65%"  stop-color="#3FA9B5"/>
+      <stop offset="100%" stop-color="#1E5A65"/>
+    </linearGradient>
+    <linearGradient id="platSheen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="40%"  stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="platEdge" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#7DD8E0"/>
+    </linearGradient>
+
+    <!-- Headline gradient -->
+    <linearGradient id="rankUp" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#FFFFFF"/>
+      <stop offset="55%"  stop-color="#FFD24A"/>
+      <stop offset="100%" stop-color="#F58220"/>
+    </linearGradient>
+
+    <!-- Soft shield drop-shadow -->
+    <filter id="shieldShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="14"/>
+      <feOffset dx="0" dy="18" result="b"/>
+      <feFlood flood-color="#000" flood-opacity="0.65"/>
+      <feComposite in2="b" operator="in"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Headline glow -->
+    <filter id="textGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Subtle stadium grid floor -->
+    <pattern id="floorGrid" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(0,191,255,0.08)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- ─── Background ────────────────────────────────────────── -->
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- Back-light beams angling down from the top -->
+  <polygon points="600,0 800,0 880,900 720,900" fill="url(#beam)" opacity="0.9"/>
+  <polygon points="800,0 1000,0 880,900 720,900" fill="url(#beam)" opacity="0.5"/>
+  <polygon points="350,0 480,0 660,900 540,900" fill="url(#beamBlue)" opacity="0.7"/>
+  <polygon points="1120,0 1250,0 1060,900 940,900" fill="url(#beamBlue)" opacity="0.7"/>
+
+  <!-- Stadium floor with perspective grid -->
+  <g transform="translate(800,640) skewX(0)">
+    <polygon points="-1200,260 1200,260 800,0 -800,0" fill="url(#floorGrid)" opacity="0.9"/>
+  </g>
+  <rect x="0" y="640" width="1600" height="260" fill="url(#floor)"/>
+
+  <!-- Center sunburst behind shield -->
+  <circle cx="800" cy="450" r="340" fill="url(#centerBurst)"/>
+
+  <!-- Particle burst ─ orange/gold dots ─────────────────────── -->
+  <g fill="#FFD24A">
+    <circle cx="540" cy="220" r="3"/>  <circle cx="1090" cy="210" r="3.5"/>
+    <circle cx="610" cy="170" r="2.5"/> <circle cx="980" cy="170" r="2.5"/>
+    <circle cx="430" cy="340" r="2.5"/> <circle cx="1180" cy="320" r="3"/>
+    <circle cx="380" cy="500" r="3.5"/> <circle cx="1230" cy="490" r="3"/>
+    <circle cx="450" cy="640" r="2.5"/> <circle cx="1170" cy="650" r="2.5"/>
+    <circle cx="700" cy="140" r="2"/>   <circle cx="900" cy="120" r="2.5"/>
+    <circle cx="820" cy="130" r="2"/>   <circle cx="760" cy="140" r="2"/>
+  </g>
+  <g fill="#F58220">
+    <circle cx="500" cy="280" r="4"/>  <circle cx="1110" cy="280" r="4"/>
+    <circle cx="350" cy="420" r="4"/>  <circle cx="1260" cy="430" r="4"/>
+    <circle cx="420" cy="580" r="3.5"/> <circle cx="1200" cy="580" r="3.5"/>
+    <circle cx="650" cy="100" r="3"/>   <circle cx="940" cy="105" r="3"/>
+  </g>
+  <g fill="#FFFFFF" opacity="0.7">
+    <circle cx="650" cy="320" r="1.5"/> <circle cx="970" cy="310" r="1.5"/>
+    <circle cx="560" cy="460" r="1.5"/> <circle cx="1050" cy="470" r="1.5"/>
+    <circle cx="720" cy="600" r="1.5"/> <circle cx="900" cy="610" r="1.5"/>
+    <circle cx="800" cy="200" r="1.5"/> <circle cx="800" cy="700" r="1.5"/>
+  </g>
+
+  <!-- Streak lines emanating outward -->
+  <g stroke="#FFD24A" stroke-opacity="0.4" stroke-width="1.5" stroke-linecap="round">
+    <line x1="800" y1="450" x2="560" y2="180"/>
+    <line x1="800" y1="450" x2="1040" y2="170"/>
+    <line x1="800" y1="450" x2="400" y2="380"/>
+    <line x1="800" y1="450" x2="1210" y2="390"/>
+    <line x1="800" y1="450" x2="430" y2="610"/>
+    <line x1="800" y1="450" x2="1180" y2="600"/>
+  </g>
+
+  <!-- ─── HEADER / Brand row ────────────────────────────────── -->
+  <g transform="translate(80,60)">
+    <rect x="0" y="0" width="56" height="56" rx="14" fill="#0F1E33" stroke="rgba(245,130,32,0.45)"/>
+    <path d="M 28 12 C 36 22, 36 32, 28 44 C 20 32, 20 22, 28 12 Z" fill="#F58220"/>
+    <circle cx="28" cy="22" r="4" fill="#050B17"/>
+    <path d="M 22 34 L 18 42 L 24 38 Z" fill="#00BFFF"/>
+    <path d="M 34 34 L 38 42 L 32 38 Z" fill="#00BFFF"/>
+    <text x="74" y="32" font-family="Orbitron, sans-serif" font-weight="900" font-size="26" fill="#ffffff" letter-spacing="3">RL LEAGUE</text>
+    <text x="74" y="54" font-family="Inter, sans-serif" font-size="12" fill="rgba(255,255,255,0.5)" letter-spacing="1.6">FRIENDS TRACKER · 2v2 LADDER</text>
+  </g>
+
+  <!-- Top-right session chip -->
+  <g transform="translate(1320,68)">
+    <rect width="200" height="48" rx="14" fill="rgba(15,30,51,0.85)" stroke="rgba(0,191,255,0.35)"/>
+    <circle cx="22" cy="24" r="5" fill="#00BFFF"/>
+    <circle cx="22" cy="24" r="10" fill="none" stroke="#00BFFF" stroke-opacity="0.4"/>
+    <text x="42" y="20" font-family="Inter, sans-serif" font-size="10" letter-spacing="1.3" fill="rgba(255,255,255,0.5)">LIVE · SESSION 03</text>
+    <text x="42" y="38" font-family="Orbitron, sans-serif" font-weight="700" font-size="14" fill="#5BD8FF">Game 3 of 4</text>
+  </g>
+
+  <!-- ─── Eyebrow ───────────────────────────────────────────── -->
+  <g transform="translate(800,168)" text-anchor="middle">
+    <rect x="-110" y="-22" width="220" height="34" rx="17" fill="rgba(245,130,32,0.12)" stroke="rgba(245,130,32,0.5)"/>
+    <text x="0" y="2" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#F58220" letter-spacing="3">RANK UP MOMENT</text>
+  </g>
+
+  <!-- ─── Headline ──────────────────────────────────────────── -->
+  <g transform="translate(800,260)" text-anchor="middle">
+    <text font-family="Orbitron, sans-serif" font-weight="900" font-size="62" fill="url(#rankUp)" letter-spacing="5" filter="url(#textGlow)">PROMOTED</text>
+  </g>
+
+  <!-- Tier transition pill -->
+  <g transform="translate(800,310)" text-anchor="middle">
+    <text font-family="Inter, sans-serif" font-weight="600" font-size="18" fill="rgba(255,255,255,0.85)" letter-spacing="2">
+      GOLD III  ▸  <tspan fill="#7DD8E0" font-weight="700">PLATINUM I</tspan>
+    </text>
+  </g>
+
+  <!-- ─── Hex Shield (Platinum I) ───────────────────────────── -->
+  <g transform="translate(800,520)" filter="url(#shieldShadow)">
+    <!-- outer hex -->
+    <polygon points="0,-150 130,-75 130,75 0,150 -130,75 -130,-75" fill="url(#platMetal)" stroke="url(#platEdge)" stroke-width="4"/>
+    <!-- inner hex inset -->
+    <polygon points="0,-118 102,-59 102,59 0,118 -102,59 -102,-59" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+    <polygon points="0,-118 102,-59 102,59 0,118 -102,59 -102,-59" fill="url(#platSheen)"/>
+
+    <!-- chevron stack (1 chevron = Platinum I) -->
+    <path d="M -40 28 L 0 -2 L 40 28" fill="none" stroke="#0A1628" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M -40 28 L 0 -2 L 40 28" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Tier label -->
+    <text x="0" y="78" font-family="Orbitron, sans-serif" font-weight="900" font-size="18" fill="#0A1628" text-anchor="middle" letter-spacing="3">PLATINUM</text>
+  </g>
+
+  <!-- Subtle glow ring around shield -->
+  <circle cx="800" cy="520" r="170" fill="none" stroke="#7DD8E0" stroke-opacity="0.25" stroke-width="2"/>
+  <circle cx="800" cy="520" r="190" fill="none" stroke="#7DD8E0" stroke-opacity="0.12" stroke-width="1.5"/>
+
+  <!-- ─── Player name + delta strip ─────────────────────────── -->
+  <g transform="translate(800,728)" text-anchor="middle">
+    <text font-family="Inter, sans-serif" font-weight="700" font-size="24" fill="#FFFFFF" letter-spacing="0.5">Stephen C.</text>
+    <text y="32" font-family="Inter, sans-serif" font-size="14" fill="rgba(255,255,255,0.55)" letter-spacing="0.5">won 3 in a row · +48 MMR · season high</text>
+  </g>
+
+  <!-- Bottom CTA bar -->
+  <g transform="translate(560,792)">
+    <rect width="480" height="56" rx="14" fill="rgba(15,30,51,0.85)" stroke="rgba(255,255,255,0.08)"/>
+    <text x="34" y="34" font-family="Inter, sans-serif" font-weight="600" font-size="14" fill="rgba(255,255,255,0.6)" letter-spacing="0.4">Next match</text>
+    <text x="34" y="36" font-family="Inter, sans-serif" font-size="10" letter-spacing="1.4" fill="rgba(255,255,255,0.35)" dy="14">SESSION 03 · GAME 4</text>
+    <g transform="translate(338,12)">
+      <rect width="120" height="32" rx="10" fill="#F58220"/>
+      <text x="60" y="22" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#050B17" text-anchor="middle">Log result →</text>
+    </g>
+  </g>
+</svg>
