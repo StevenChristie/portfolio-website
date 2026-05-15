@@ -70,10 +70,6 @@
       <div class="about-img-wrap reveal">
         <div class="about-img-bg"></div>
         <img src="assets.css/headshot.jpg" alt="Stephen Christie" class="about-img">
-        <div class="about-img-badge">
-          <span class="badge-num">2025</span>
-          <span class="badge-txt">Graduate</span>
-        </div>
       </div>
     </div>
     <div class="about-right">
@@ -109,7 +105,7 @@
       <div class="proj-card reveal" data-index="01">
         <div class="proj-img" style="background-image:url('assets.css/toneblast.png');background-size:contain;background-repeat:no-repeat;background-color:#0f172a;"></div>
         <div class="proj-overlay">
-          <div class="proj-tags"><span>Web</span><span>Business</span></div>
+          <div class="proj-tags"><span>Business</span><span>Production</span><span>Sold</span></div>
           <h3>Tone Blast</h3>
           <p>Professional web presence for a sandblasting service in JHB — performance focused with clear service presentation.</p>
           <div class="proj-links">
@@ -122,7 +118,7 @@
       <div class="proj-card reveal" data-index="02">
         <div class="proj-img" style="background-image:url('assets.css/salaryhub.png');background-size:cover;background-position:left center;background-color:#07070f;"></div>
         <div class="proj-overlay">
-          <div class="proj-tags"><span>Web</span><span>Firebase</span><span>JavaScript</span></div>
+          <div class="proj-tags"><span>Firebase</span><span>JavaScript</span><span>In Development</span></div>
           <h3>SalaryHub</h3>
           <p>Personal finance dashboard with Google sign-in, recurring expense tracking and an animated daily-burn ring — built with vanilla JS, Firebase Auth and Firestore.</p>
           <div class="proj-links">
@@ -133,9 +129,9 @@
       </div>
 
       <div class="proj-card reveal" data-index="03">
-        <div class="proj-img" style="background-image:url('assets.css/rocketleague.svg');background-size:cover;background-position:left center;background-color:#050B17;"></div>
+        <div class="proj-img" style="background-image:url('assets.css/rocketleague.png');background-size:cover;background-position:center center;background-color:#050B17;"></div>
         <div class="proj-overlay">
-          <div class="proj-tags"><span>React</span><span>Firebase</span><span>Tailwind</span></div>
+          <div class="proj-tags"><span>React</span><span>Firebase</span><span>Tailwind</span><span>In Development</span></div>
           <h3>RL League Tracker</h3>
           <p>Animated 2v2 Rocket League ladder for friends — Google sign-in, Bronze-to-SSL rank ladder, MMR transactions and rank-up celebrations. Built with React, Vite, Tailwind, Framer Motion and Firestore.</p>
           <div class="proj-links">
@@ -159,11 +155,11 @@
       <div class="contact-info reveal">
         <a href="mailto:hello@stephenchristie.co.za" class="cinfo-row">
           <span class="cinfo-icon"><i class="far fa-envelope"></i></span>
-          <span>hello@stephenchristie.co.za</span>
+          <span>stephenchristie12345@gmail.com</span>
         </a>
         <div class="cinfo-row">
           <span class="cinfo-icon"><i class="fas fa-phone-alt"></i></span>
-          <span>+27 11 000 0000</span>
+          <span>+27 065 955 5591</span>
         </div>
         <div class="cinfo-row">
           <span class="cinfo-icon"><i class="far fa-building"></i></span>
@@ -171,7 +167,7 @@
         </div>
         <div class="cinfo-row">
           <span class="cinfo-icon"><i class="far fa-clock"></i></span>
-          <span>09:00 – 18:00 SAST</span>
+          <span>09:00 – 16:00 SAST</span>
         </div>
       </div>
       <div class="contact-socials reveal">
@@ -225,10 +221,13 @@ window.addEventListener('load', () => {
 // ─── CURSOR ────────────────────────────────────────────────────
 const cur = document.getElementById('cursor');
 const curBlur = document.getElementById('cursor-blur');
-let mx=0,my=0,bx=0,by=0;
+let mx=0,my=0,bx=0,by=0,rafCur=null;
 document.addEventListener('mousemove', e => {
   mx = e.clientX; my = e.clientY;
-  cur.style.transform = `translate(${mx}px,${my}px)`;
+  if(!rafCur) rafCur = requestAnimationFrame(()=>{
+    cur.style.transform = `translate(${mx}px,${my}px)`;
+    rafCur = null;
+  });
 });
 (function lerpBlur(){
   bx+=(mx-bx)*0.08; by+=(my-by)*0.08;
@@ -273,28 +272,35 @@ class Particle {
     if(this.y<0||this.y>H) this.vy*=-1;
   }
 }
-for(let i=0;i<90;i++) particles.push(new Particle());
+for(let i=0;i<60;i++) particles.push(new Particle());
+
+const LINK_DIST = 130;
+const LINK_DIST_SQ = LINK_DIST * LINK_DIST;
 
 function drawCanvas(){
   ctx.clearRect(0,0,W,H);
+  // batch all dots in one path for fewer draw calls
+  ctx.beginPath();
+  ctx.fillStyle='rgba(99,148,255,0.55)';
   particles.forEach(p=>{
     p.update();
-    ctx.beginPath();
+    ctx.moveTo(p.x+p.r, p.y);
     ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle='rgba(99,148,255,0.55)';
-    ctx.fill();
   });
+  ctx.fill();
+  // draw lines — use squared distance to avoid sqrt
+  ctx.lineWidth=0.6;
   for(let i=0;i<particles.length;i++){
     for(let j=i+1;j<particles.length;j++){
       const dx=particles[i].x-particles[j].x;
       const dy=particles[i].y-particles[j].y;
-      const dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist<130){
+      const distSq=dx*dx+dy*dy;
+      if(distSq<LINK_DIST_SQ){
+        const alpha=0.18*(1-Math.sqrt(distSq)/LINK_DIST);
         ctx.beginPath();
         ctx.moveTo(particles[i].x,particles[i].y);
         ctx.lineTo(particles[j].x,particles[j].y);
-        ctx.strokeStyle=`rgba(99,148,255,${0.18*(1-dist/130)})`;
-        ctx.lineWidth=0.6;
+        ctx.strokeStyle=`rgba(99,148,255,${alpha})`;
         ctx.stroke();
       }
     }

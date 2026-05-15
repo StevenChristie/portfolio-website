@@ -67,6 +67,7 @@ img{display:block;max-width:100%;}
   pointer-events:none;z-index:10000;
   transform:translate(0,0);
   margin:-4px 0 0 -4px;
+  will-change:transform;
   transition:transform 0.05s linear, width 0.3s var(--ease), height 0.3s var(--ease), background 0.3s;
 }
 #cursor.big{width:16px;height:16px;margin:-8px 0 0 -8px;background:var(--blue);}
@@ -75,6 +76,7 @@ img{display:block;max-width:100%;}
   background:radial-gradient(circle,rgba(37,99,235,0.12) 0%,transparent 70%);
   border-radius:50%;pointer-events:none;z-index:0;
   margin:-150px 0 0 -150px;
+  will-change:transform;
   transition:width 0.4s,height 0.4s;
 }
 #cursor-blur.big{width:500px;height:500px;margin:-250px 0 0 -250px;}
@@ -128,7 +130,7 @@ img{display:block;max-width:100%;}
   display:flex;align-items:center;
   overflow:hidden;background:var(--bg);
 }
-#hero-canvas{position:absolute;inset:0;z-index:0;}
+#hero-canvas{position:absolute;inset:0;z-index:0;will-change:transform;transform:translateZ(0);}
 .hero-wrap{
   position:relative;z-index:2;
   max-width:1140px;margin:0 auto;padding:0 2rem;
@@ -208,6 +210,7 @@ img{display:block;max-width:100%;}
   backdrop-filter:blur(12px);
   padding:0.5rem 1rem;border-radius:100px;
   font-size:0.8rem;color:var(--muted);
+  will-change:transform;
   animation:float 6s ease-in-out infinite;
 }
 .pill i{color:var(--blue2);}
@@ -299,6 +302,7 @@ section{padding:8rem 0;}
   position:relative;border-radius:12px;overflow:hidden;
   border:1px solid var(--border);
   background:var(--bg2);
+  will-change:transform;
   transition:transform 0.4s var(--ease),box-shadow 0.4s;
   cursor:none;
 }
