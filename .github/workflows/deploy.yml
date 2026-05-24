@@ -21,6 +21,6 @@ jobs:
         run: npm install -g firebase-tools
 
       - name: Deploy to Firebase Hosting
-        run: |
-          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > /tmp/sa.json
-          GOOGLE_APPLICATION_CREDENTIALS=/tmp/sa.json firebase deploy --only hosting --project portfolio-75cf1
+        run: firebase deploy --only hosting --project portfolio-75cf1
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
