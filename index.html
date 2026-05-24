@@ -34,8 +34,21 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="#contact" class="nav-btn">Hire Me</a>
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE NAV -->
+<div id="nav-mobile" role="navigation" aria-label="Mobile navigation">
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-btn">Hire Me</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -105,7 +118,7 @@
     <div class="proj-grid">
 
       <div class="proj-card reveal" data-index="01">
-        <div class="proj-img" style="background-image:url('assets.css/toneblast.png');background-size:contain;background-repeat:no-repeat;background-color:#0f172a;"></div>
+        <div class="proj-img proj-img-toneblast"></div>
         <div class="proj-overlay">
           <div class="proj-tags"><span>Business</span><span>Production</span><span>Sold</span></div>
           <h3>Tone Blast</h3>
@@ -118,7 +131,7 @@
       </div>
 
       <div class="proj-card reveal" data-index="02">
-        <div class="proj-img" style="background-image:url('assets.css/metaballo2.png');background-size:cover;background-position:left center;background-color:#07070f;"></div>
+        <div class="proj-img proj-img-metaballo"></div>
         <div class="proj-overlay">
           <div class="proj-tags"><span>Firebase</span><span>HTML</span><span>CSS</span><span>Concept</span></div>
           <h3>Metaballo</h3>
@@ -131,7 +144,7 @@
       </div>
 
       <div class="proj-card reveal" data-index="03">
-        <div class="proj-img" style="background-image:url('assets.css/rocketleague.png');background-size:cover;background-position:center center;background-color:#050B17;"></div>
+        <div class="proj-img proj-img-rocketleague"></div>
         <div class="proj-overlay">
           <div class="proj-tags"><span>React</span><span>Firebase</span><span>Tailwind</span><span>In Development</span></div>
           <h3>RL League Tracker</h3>
@@ -220,25 +233,44 @@ window.addEventListener('load', () => {
   }, 1200);
 });
 
-// ─── CURSOR ────────────────────────────────────────────────────
+// ─── CURSOR (desktop only) ─────────────────────────────────────
 const cur = document.getElementById('cursor');
 const curBlur = document.getElementById('cursor-blur');
-let mx=0,my=0,bx=0,by=0,rafCur=null;
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  if(!rafCur) rafCur = requestAnimationFrame(()=>{
-    cur.style.transform = `translate(${mx}px,${my}px)`;
-    rafCur = null;
+const isTouch = window.matchMedia('(hover:none) and (pointer:coarse)').matches;
+if(!isTouch){
+  let mx=0,my=0,bx=0,by=0,rafCur=null;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    if(!rafCur) rafCur = requestAnimationFrame(()=>{
+      cur.style.transform = `translate(${mx}px,${my}px)`;
+      rafCur = null;
+    });
   });
-});
-(function lerpBlur(){
-  bx+=(mx-bx)*0.08; by+=(my-by)*0.08;
-  curBlur.style.transform=`translate(${bx}px,${by}px)`;
-  requestAnimationFrame(lerpBlur);
-})();
-document.querySelectorAll('a,button,.proj-card,.skill-tag').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{ cur.classList.add('big'); curBlur.classList.add('big'); });
-  el.addEventListener('mouseleave',()=>{ cur.classList.remove('big'); curBlur.classList.remove('big'); });
+  (function lerpBlur(){
+    bx+=(mx-bx)*0.08; by+=(my-by)*0.08;
+    curBlur.style.transform=`translate(${bx}px,${by}px)`;
+    requestAnimationFrame(lerpBlur);
+  })();
+  document.querySelectorAll('a,button,.proj-card,.skill-tag').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{ cur.classList.add('big'); curBlur.classList.add('big'); });
+    el.addEventListener('mouseleave',()=>{ cur.classList.remove('big'); curBlur.classList.remove('big'); });
+  });
+}
+
+// ─── HAMBURGER NAV ──────────────────────────────────────────────
+const hamburger = document.getElementById('nav-hamburger');
+const mobileNav = document.getElementById('nav-mobile');
+function toggleMobileNav(force){
+  const isOpen = force !== undefined ? force : !hamburger.classList.contains('open');
+  hamburger.classList.toggle('open', isOpen);
+  mobileNav.classList.toggle('open', isOpen);
+  hamburger.setAttribute('aria-expanded', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+hamburger.addEventListener('click', () => toggleMobileNav());
+// Close on any mobile nav link click
+mobileNav.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => toggleMobileNav(false));
 });
 
 // ─── NAVBAR ────────────────────────────────────────────────────
@@ -340,16 +372,18 @@ document.querySelectorAll('.proj-card').forEach(card=>{
   card.addEventListener('mouseleave',()=>card.style.transform='');
 });
 
-// ─── MAGNETIC BUTTONS ──────────────────────────────────────────
-document.querySelectorAll('.btn-solid,.btn-line,.nav-btn').forEach(btn=>{
-  btn.addEventListener('mousemove',e=>{
-    const r=btn.getBoundingClientRect();
-    const x=(e.clientX-r.left-r.width/2)*0.25;
-    const y=(e.clientY-r.top-r.height/2)*0.25;
-    btn.style.transform=`translate(${x}px,${y}px)`;
+// ─── MAGNETIC BUTTONS (desktop only) ───────────────────────────
+if(!isTouch){
+  document.querySelectorAll('.btn-solid,.btn-line,.nav-btn').forEach(btn=>{
+    btn.addEventListener('mousemove',e=>{
+      const r=btn.getBoundingClientRect();
+      const x=(e.clientX-r.left-r.width/2)*0.25;
+      const y=(e.clientY-r.top-r.height/2)*0.25;
+      btn.style.transform=`translate(${x}px,${y}px)`;
+    });
+    btn.addEventListener('mouseleave',()=>btn.style.transform='');
   });
-  btn.addEventListener('mouseleave',()=>btn.style.transform='');
-});
+}
 </script>
 </body>
 </html>
