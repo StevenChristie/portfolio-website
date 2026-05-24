@@ -83,7 +83,7 @@ img{display:block;max-width:100%;}
 
 /* ── NAV ───────────────────────────────────────────────── */
 #nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
+  position:fixed;top:0;left:0;right:0;z-index:210;
   padding:1.6rem 0;
   transition:padding 0.3s, background 0.4s, border 0.4s, backdrop-filter 0.4s;
 }
